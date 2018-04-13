@@ -1,0 +1,44 @@
+body {
+  background-color: rgb(56, 57, 56);
+}
+
+.icon-block {
+  padding: 0 15px;
+}
+
+.icon-block .material-icons {
+  font-size: inherit;
+}
+
+.container.weather {
+  background-color: #e0e0e0;
+}
+.material-icons {
+  font-size: 38px;
+}
+/* .input-span {
+  width: 100px;
+} */
+input:not([type]):focus:not([readonly]),
+input[type=text]:not(.browser-default):focus:not([readonly]),
+input[type=password]:not(.browser-default):focus:not([readonly]),
+input[type=email]:not(.browser-default):focus:not([readonly]),
+input[type=url]:not(.browser-default):focus:not([readonly]),
+input[type=time]:not(.browser-default):focus:not([readonly]),
+input[type=date]:not(.browser-default):focus:not([readonly]),
+input[type=datetime]:not(.browser-default):focus:not([readonly]),
+input[type=datetime-local]:not(.browser-default):focus:not([readonly]),
+input[type=tel]:not(.browser-default):focus:not([readonly]),
+input[type=number]:not(.browser-default):focus:not([readonly]),
+input[type=search]:not(.browser-default):focus:not([readonly]),
+textarea.materialize-textarea:focus:not([readonly]) {
+  border-bottom: 1px solid #039be5;
+  -webkit-box-shadow: 0 1px 0 0 #039be5;
+  box-shadow: 0 1px 0 0 #039be5;
+}
+input[type=text]:not(.browser-default) {
+  width: 80%;
+}
+#city {
+  margin-top: 10px;
+}
