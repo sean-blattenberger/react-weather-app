@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import WeatherCard from "./components/WeatherCard";
-
+const darkSkyKey = "3795f4e1a5a7d96d565aa6d6daf77fe3";
+const googleKey = "AIzaSyDd6kGOzoEZL2gagZAu4Hmm7mpawEJ4Km8";
 
 class App extends Component {
   state = {

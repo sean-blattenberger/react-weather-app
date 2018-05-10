@@ -39,11 +39,13 @@ class WeatherCard extends React.Component {
     return (
       <div className="row">
         <span className="input-span col s4 offset-s4">
-          <input onKeyPress={this.fetchGeoData} placeholder="Enter Zip" id="city" type="text" className="validate" /><i className="material-icons md-48 md-light">keyboard_return</i>
+          <input autoFocus ref="input" onKeyPress={this.fetchGeoData} placeholder="Enter Zip" id="city" type="text" className="validate" /><i className="material-icons md-48 md-light">keyboard_return</i>
         </span>
       </div>
       )
   }
+
+
   render() {
     return (
       <div>
@@ -67,7 +69,7 @@ class WeatherCard extends React.Component {
               {!this.state.isHidden && this.locationInput()}
               <span className="white-text bold">
                 {this.state.isHidden
-                  && <i onClick={this.toggleHidden} className="material-icons md-48 md-light">mode_edit</i>
+                  && <i onClick={this.toggleHidden} className="material-icons md-48 md-light edit-icon">mode_edit</i>
                 }
               </span>
             </h1>

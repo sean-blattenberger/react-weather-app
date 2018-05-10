@@ -42,3 +42,6 @@ input[type=text]:not(.browser-default) {
 #city {
   margin-top: 10px;
 }
+.edit-icon:hover {
+  cursor: pointer;
+}
