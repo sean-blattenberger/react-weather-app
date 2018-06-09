@@ -13,7 +13,6 @@ const icons = {
   fog: "FOG"
 };
 
-
 class WeatherCard extends React.Component {
   state = {
     isHidden: true
@@ -27,24 +26,41 @@ class WeatherCard extends React.Component {
       isHidden: !this.state.isHidden
     });
   };
-  fetchGeoData = (event) => {
-    if (event.key === 'Enter') {
+  fetchGeoData = event => {
+    if (event.key === "Enter") {
       event.preventDefault();
-      this.props.getLatLon(event.target.value);
-      event.target.value = '';
-      this.toggleHidden();
+      let regex = /^\d{5}$/;
+      if (regex.test(event.target.value)) {
+        this.props.getLatLon(event.target.value);
+        event.target.value = "";
+        this.toggleHidden();
+      } else {
+        event.target.value = "";
+        event.target.className = "invalid"
+        event.target.placeholder = "Please enter a valid 5 digit Zip Code";
+      }
     }
-  }
+  };
   locationInput = () => {
     return (
       <div className="row">
         <span className="input-span col s4 offset-s4">
-          <input autoFocus ref="input" onKeyPress={this.fetchGeoData} placeholder="Enter Zip" id="city" type="text" className="validate" /><i className="material-icons md-48 md-light">keyboard_return</i>
+          <input
+            type="text"
+            pattern="[0-9]{5}"
+            autoFocus
+            ref="input"
+            onKeyPress={this.fetchGeoData}
+            placeholder="Enter Zip"
+            id="city"
+            type="text"
+            className="validate"
+          />
+          <i className="material-icons md-48 md-light">keyboard_return</i>
         </span>
       </div>
-      )
-  }
-
+    );
+  };
 
   render() {
     return (
@@ -54,23 +70,27 @@ class WeatherCard extends React.Component {
             <br />
             <br />
             <div className="row center">
-              <h5 className="header col s12 light light-blue-text text-lighten-1 thin">
+              <h5 id="card-header" className="header col s12 light light-blue-text text-lighten-1 thin">
                 YOUR CURRENT LOCAL WEATHER IN
               </h5>
             </div>
             <h1 className="header center orange-text condensed light thin">
-              {this.state.isHidden
-                &&
+              {this.state.isHidden && (
                 <span>
                   {this.props.weatherData.location.city},{" "}
                   {this.props.weatherData.location.region_code}
                 </span>
-              }
+              )}
               {!this.state.isHidden && this.locationInput()}
               <span className="white-text bold">
-                {this.state.isHidden
-                  && <i onClick={this.toggleHidden} className="material-icons md-48 md-light edit-icon">mode_edit</i>
-                }
+                {this.state.isHidden && (
+                  <i
+                    onClick={this.toggleHidden}
+                    className="material-icons md-48 md-light edit-icon"
+                  >
+                    mode_edit
+                  </i>
+                )}
               </span>
             </h1>
             <br />
@@ -82,10 +102,14 @@ class WeatherCard extends React.Component {
               <div className="icon-block">
                 {this.props.weatherData.weather && this.addWeatherIcon()}
                 <h5 className="center thin condensed light-blue-text text-lighten-1">
-                  {this.props.weatherData.weather && this.props.weatherData.weather.currently.summary}
+                  {this.props.weatherData.weather &&
+                    this.props.weatherData.weather.currently.summary}
                 </h5>
                 <h4 className="thin center light-blue-text text-lighten-1">
-                  {this.props.weatherData.weather && Math.round(this.props.weatherData.weather.currently.temperature)}{" "}
+                  {this.props.weatherData.weather &&
+                    Math.round(
+                      this.props.weatherData.weather.currently.temperature
+                    )}{" "}
                   &nbsp;&deg;&nbsp;F
                 </h4>
               </div>

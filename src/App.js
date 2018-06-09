@@ -5,6 +5,20 @@ import WeatherCard from "./components/WeatherCard";
 const darkSkyKey = "3795f4e1a5a7d96d565aa6d6daf77fe3";
 const googleKey = "AIzaSyDd6kGOzoEZL2gagZAu4Hmm7mpawEJ4Km8";
 
+const AboutModal = () => {
+  return (
+    <div id="modal1" className="modal">
+      <div className="modal-content">
+        <h4>About</h4>
+        <p>This is a weather app that uses a geolocation api, Google's geo API, and and the Darksky api to retrieve a user's weather based on their location or input. The app is built using HTML, CSS, and ReactJS with end-to-end testing using Cypress.</p>
+      </div>
+      <div className="modal-footer">
+        <a href="#!" className="modal-close waves-effect waves-green btn-flat">Close</a>
+      </div>
+    </div>
+  )
+};
+
 class App extends Component {
   state = {
     weather: '',
@@ -48,7 +62,8 @@ class App extends Component {
     return (
       <div className="App">
         <Navbar />
-        <WeatherCard getLatLon={this.getLatLon} weatherData={this.state}/>
+        <WeatherCard getLatLon={this.getLatLon} weatherData={this.state} />
+        <AboutModal/>
       </div>
     );
   }

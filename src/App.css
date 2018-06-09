@@ -45,3 +45,6 @@ input[type=text]:not(.browser-default) {
 .edit-icon:hover {
   cursor: pointer;
 }
+.invalid::placeholder {
+  color: red;
+}
