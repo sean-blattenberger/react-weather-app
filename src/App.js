@@ -4,6 +4,20 @@ import Navbar from "./components/Navbar";
 import WeatherCard from "./components/WeatherCard";
 const darkSkyKey = "3795f4e1a5a7d96d565aa6d6daf77fe3";
 const googleKey = "AIzaSyDd6kGOzoEZL2gagZAu4Hmm7mpawEJ4Km8";
+const geoData ={
+  city: "Denver",
+  continent_code: "NA",
+  continent_name: "North America",
+  country_code: "US",
+  country_name: "United States",
+  ip: "71.229.191.118",
+  latitude: 39.7388,
+  longitude: -104.4083,
+  region_code: "CO",
+  region_name: "Colorado",
+  type: "ipv4",
+  zip: "80238"
+}
 
 const AboutModal = () => {
   return (
@@ -37,15 +51,20 @@ class App extends Component {
       return data;
     }).then(this.getWeatherData)
   }
-  getLocationData = () => {
-    const geoUrl = "https://api.ipstack.com/check?access_key=d6ac8bb245a7f52824fe950cf3e6f714";
-    return fetch(geoUrl)
-      .then(res => res.json())
-      .then(geoData => {
-        this.setState({ location: geoData });
-        return geoData;
-      })
-  };
+  // getLocationData = () => {
+  //   const geoUrl = "http://api.ipstack.com/check?access_key=d6ac8bb245a7f52824fe950cf3e6f714";
+  //   return fetch(geoUrl)
+  //     .then(res => res.json())
+  //     .then(geoData => {
+  //       console.log(geoData);
+  //       this.setState({ location: geoData });
+  //       return geoData;
+  //     })
+  // };
+  setGeo = () => {
+    this.setState({ location: geoData });
+    Promise.resolve();
+  }
   getWeatherData = () => {
     const weatherUrl = `https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/${darkSkyKey}/${this.state.location.latitude},${this.state.location.longitude}`;
     return fetch(weatherUrl)
@@ -56,7 +75,11 @@ class App extends Component {
       .catch(err => err);
   };
   componentDidMount() {
-    this.getLocationData().then(this.getWeatherData);
+    new Promise(((resolve) => {
+      this.setState({ location: geoData });
+      resolve()
+    })).then(this.getWeatherData)
+    // this.getLocationData().then(this.getWeatherData);
   }
   render() {
     return (
