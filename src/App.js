@@ -38,7 +38,7 @@ class App extends Component {
     }).then(this.getWeatherData)
   }
   getLocationData = () => {
-    const geoUrl = "http://api.ipstack.com/check?access_key=d6ac8bb245a7f52824fe950cf3e6f714";
+    const geoUrl = "https://api.ipstack.com/check?access_key=d6ac8bb245a7f52824fe950cf3e6f714";
     return fetch(geoUrl)
       .then(res => res.json())
       .then(geoData => {
